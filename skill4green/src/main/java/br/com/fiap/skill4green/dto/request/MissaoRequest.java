@@ -1,22 +1,17 @@
-package br.com.fiap.skill4green.dto;
+package br.com.fiap.skill4green.dto.request;
 
 import br.com.fiap.skill4green.model.enums.StatusMissao;
 import jakarta.validation.constraints.*;
-import lombok.*;
+import lombok.Data;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class MissaoDTO {
-
-  private Long id;
+public class MissaoRequest {
 
   @NotBlank
   private String descricao;
 
   @NotNull
-  @DecimalMin("0.0")
+  @DecimalMin(value = "0.0", inclusive = false)
   private Double meta;
 
   @NotNull

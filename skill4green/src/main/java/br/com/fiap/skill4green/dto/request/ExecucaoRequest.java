@@ -1,17 +1,12 @@
-package br.com.fiap.skill4green.dto;
+package br.com.fiap.skill4green.dto.request;
 
 import jakarta.validation.constraints.*;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class ExecucaoDTO {
-
-  private Long id;
+public class ExecucaoRequest {
 
   @NotNull
   private Long idColaborador;

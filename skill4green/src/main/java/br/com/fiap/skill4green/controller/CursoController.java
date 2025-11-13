@@ -1,0 +1,45 @@
+package br.com.fiap.skill4green.controller;
+
+import br.com.fiap.skill4green.dto.request.CursoRequest;
+import br.com.fiap.skill4green.dto.response.CursoResponse;
+import br.com.fiap.skill4green.service.CursoService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/cursos")
+@RequiredArgsConstructor
+public class CursoController {
+
+  private final CursoService service;
+
+  @GetMapping
+  public List<CursoResponse> listar() {
+    return service.listar();
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<CursoResponse> buscar(@PathVariable Long id) {
+    return ResponseEntity.ok(service.buscarPorId(id));
+  }
+
+  @PostMapping
+  public ResponseEntity<CursoResponse> criar(@RequestBody @Valid CursoRequest request) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(request));
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<CursoResponse> atualizar(@PathVariable Long id, @RequestBody @Valid CursoRequest request) {
+    return ResponseEntity.ok(service.atualizar(id, request));
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> remover(@PathVariable Long id) {
+    service.remover(id);
+    return ResponseEntity.noContent().build();
+  }
+}
