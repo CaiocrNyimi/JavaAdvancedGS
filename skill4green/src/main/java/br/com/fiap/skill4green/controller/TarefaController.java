@@ -5,10 +5,10 @@ import br.com.fiap.skill4green.dto.response.TarefaResponse;
 import br.com.fiap.skill4green.service.TarefaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/tarefas")
@@ -18,8 +18,8 @@ public class TarefaController {
   private final TarefaService service;
 
   @GetMapping
-  public List<TarefaResponse> listar() {
-    return service.listar();
+  public Page<TarefaResponse> listar(Pageable pageable) {
+    return service.listar(pageable);
   }
 
   @GetMapping("/{id}")

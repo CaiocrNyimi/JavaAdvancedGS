@@ -5,10 +5,10 @@ import br.com.fiap.skill4green.dto.response.ColaboradorResponse;
 import br.com.fiap.skill4green.service.ColaboradorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/colaboradores")
@@ -18,8 +18,8 @@ public class ColaboradorController {
   private final ColaboradorService service;
 
   @GetMapping
-  public List<ColaboradorResponse> listar() {
-    return service.listar();
+  public Page<ColaboradorResponse> listar(Pageable pageable) {
+    return service.listar(pageable);
   }
 
   @GetMapping("/{id}")

@@ -5,10 +5,10 @@ import br.com.fiap.skill4green.dto.response.MissaoResponse;
 import br.com.fiap.skill4green.service.MissaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/missoes")
@@ -18,8 +18,8 @@ public class MissaoController {
   private final MissaoService service;
 
   @GetMapping
-  public List<MissaoResponse> listar() {
-    return service.listar();
+  public Page<MissaoResponse> listar(Pageable pageable) {
+    return service.listar(pageable);
   }
 
   @GetMapping("/{id}")

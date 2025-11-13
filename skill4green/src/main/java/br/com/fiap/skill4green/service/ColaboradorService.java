@@ -7,11 +7,11 @@ import br.com.fiap.skill4green.mapper.ColaboradorMapper;
 import br.com.fiap.skill4green.model.Colaborador;
 import br.com.fiap.skill4green.repository.ColaboradorRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,10 +21,8 @@ public class ColaboradorService {
   private final ColaboradorMapper mapper;
   private final PasswordEncoder encoder;
 
-  public List<ColaboradorResponse> listar() {
-    return repository.findAll().stream()
-      .map(mapper::toResponse)
-      .collect(Collectors.toList());
+  public Page<ColaboradorResponse> listar(Pageable pageable) {
+    return repository.findAll(pageable).map(mapper::toResponse);
   }
 
   public ColaboradorResponse buscarPorId(Long id) {

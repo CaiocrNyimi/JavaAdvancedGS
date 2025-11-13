@@ -7,13 +7,13 @@ import lombok.Data;
 @Data
 public class MissaoRequest {
 
-  @NotBlank
+  @NotBlank(message = "validacao.descricao.obrigatoria")
   private String descricao;
 
-  @NotNull
-  @DecimalMin(value = "0.0", inclusive = false)
+  @NotNull(message = "validacao.meta.obrigatoria")
+  @DecimalMin(value = "0.0", inclusive = false, message = "validacao.meta.minima")
   private Double meta;
 
-  @NotNull
+  @NotNull(message = "validacao.status.obrigatorio")
   private StatusMissao status;
 }

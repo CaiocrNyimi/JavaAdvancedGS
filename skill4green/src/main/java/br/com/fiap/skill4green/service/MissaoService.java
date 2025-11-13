@@ -7,10 +7,10 @@ import br.com.fiap.skill4green.mapper.MissaoMapper;
 import br.com.fiap.skill4green.model.Missao;
 import br.com.fiap.skill4green.repository.MissaoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +19,8 @@ public class MissaoService {
   private final MissaoRepository repository;
   private final MissaoMapper mapper;
 
-  public List<MissaoResponse> listar() {
-    return repository.findAll().stream()
-      .map(mapper::toResponse)
-      .collect(Collectors.toList());
+  public Page<MissaoResponse> listar(Pageable pageable) {
+    return repository.findAll(pageable).map(mapper::toResponse);
   }
 
   public MissaoResponse buscarPorId(Long id) {

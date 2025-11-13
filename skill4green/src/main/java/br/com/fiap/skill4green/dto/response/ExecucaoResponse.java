@@ -4,10 +4,11 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.io.Serializable;
 
 @Data
 @Builder
-public class ExecucaoResponse {
+public class ExecucaoResponse implements Serializable {
   private Long id;
   private Long idColaborador;
   private Long idTarefa;

@@ -7,10 +7,10 @@ import br.com.fiap.skill4green.mapper.CursoMapper;
 import br.com.fiap.skill4green.model.Curso;
 import br.com.fiap.skill4green.repository.CursoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +19,8 @@ public class CursoService {
   private final CursoRepository repository;
   private final CursoMapper mapper;
 
-  public List<CursoResponse> listar() {
-    return repository.findAll().stream()
-      .map(mapper::toResponse)
-      .collect(Collectors.toList());
+  public Page<CursoResponse> listar(Pageable pageable) {
+    return repository.findAll(pageable).map(mapper::toResponse);
   }
 
   public CursoResponse buscarPorId(Long id) {

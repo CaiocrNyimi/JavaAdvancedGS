@@ -1,5 +1,7 @@
 package br.com.fiap.skill4green.security;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.*;
 
 @Data
@@ -7,5 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class AuthRequest {
   private String email;
+
+  @JsonProperty("senha")
   private String password;
 }

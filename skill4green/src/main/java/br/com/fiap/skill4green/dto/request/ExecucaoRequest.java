@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
 @Data
 public class ExecucaoRequest {
 
-  @NotNull
+  @NotNull(message = "validacao.colaborador.obrigatorio")
   private Long idColaborador;
 
-  @NotNull
+  @NotNull(message = "validacao.tarefa.obrigatoria")
   private Long idTarefa;
 
-  @NotNull
+  @NotNull(message = "validacao.data.obrigatoria")
   private LocalDateTime data;
 
-  @NotBlank
+  @NotBlank(message = "validacao.resultado.obrigatorio")
   private String resultado;
 }

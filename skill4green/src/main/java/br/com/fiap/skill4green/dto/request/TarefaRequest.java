@@ -8,15 +8,15 @@ import lombok.Data;
 @Data
 public class TarefaRequest {
 
-  @NotBlank
+  @NotBlank(message = "validacao.descricao.obrigatoria")
   private String descricao;
 
-  @Min(0)
+  @Min(value = 0, message = "validacao.kwh.minimo")
   private double impactoKwh;
 
-  @Min(0)
+  @Min(value = 0, message = "validacao.co2.minimo")
   private double impactoCo2;
 
-  @NotNull
+  @NotNull(message = "validacao.dificuldade.obrigatoria")
   private Dificuldade dificuldade;
 }

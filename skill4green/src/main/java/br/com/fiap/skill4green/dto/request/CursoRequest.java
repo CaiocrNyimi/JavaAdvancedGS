@@ -8,12 +8,12 @@ import lombok.Data;
 @Data
 public class CursoRequest {
 
-  @NotBlank
+  @NotBlank(message = "validacao.tema.obrigatorio")
   private String tema;
 
-  @NotNull
+  @NotNull(message = "validacao.nivel.obrigatorio")
   private NivelVerde nivel;
 
-  @NotBlank
+  @NotBlank(message = "validacao.link.obrigatorio")
   private String link;
 }

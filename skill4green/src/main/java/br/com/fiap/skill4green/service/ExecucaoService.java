@@ -12,10 +12,10 @@ import br.com.fiap.skill4green.repository.ColaboradorRepository;
 import br.com.fiap.skill4green.repository.ExecucaoRepository;
 import br.com.fiap.skill4green.repository.TarefaRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -27,10 +27,14 @@ public class ExecucaoService {
   private final ExecucaoMapper mapper;
   private final TarefaProducer producer;
 
-  public List<ExecucaoResponse> listar() {
-    return repository.findAll().stream()
-      .map(mapper::toResponse)
-      .collect(Collectors.toList());
+  public Page<ExecucaoResponse> listar(Pageable pageable) {
+    return repository.findAll(pageable).map(mapper::toResponse);
+  }
+
+  public ExecucaoResponse buscarPorId(Long id) {
+    Execucao execucao = repository.findById(id)
+      .orElseThrow(() -> new NotFoundException("erro.execucao.nao.encontrada"));
+    return mapper.toResponse(execucao);
   }
 
   public ExecucaoResponse salvar(ExecucaoRequest request) {
@@ -45,5 +49,29 @@ public class ExecucaoService {
 
     producer.enviarExecucao(response);
     return response;
+  }
+
+  public ExecucaoResponse atualizar(Long id, ExecucaoRequest request) {
+    Execucao existente = repository.findById(id)
+      .orElseThrow(() -> new NotFoundException("erro.execucao.nao.encontrada"));
+
+    Colaborador colaborador = colaboradorRepository.findById(request.getIdColaborador())
+      .orElseThrow(() -> new NotFoundException("erro.colaborador.nao.encontrado"));
+    Tarefa tarefa = tarefaRepository.findById(request.getIdTarefa())
+      .orElseThrow(() -> new NotFoundException("erro.tarefa.nao.encontrada"));
+
+    existente.setColaborador(colaborador);
+    existente.setTarefa(tarefa);
+    existente.setData(request.getData());
+    existente.setResultado(request.getResultado());
+
+    Execucao atualizada = repository.save(existente);
+    return mapper.toResponse(atualizada);
+  }
+
+  public void remover(Long id) {
+    Execucao execucao = repository.findById(id)
+      .orElseThrow(() -> new NotFoundException("erro.execucao.nao.encontrada"));
+    repository.delete(execucao);
   }
 }
