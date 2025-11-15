@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,20 +21,24 @@ public class TarefaService {
   private final TarefaRepository repository;
   private final TarefaMapper mapper;
 
+  @Cacheable(value = "tarefas")
   public Page<TarefaResponse> listar(Pageable pageable) {
     return repository.findAll(pageable).map(mapper::toResponse);
   }
 
+  @Cacheable(value = "tarefas", key = "#id")
   public TarefaResponse buscarPorId(Long id) {
     Tarefa t = repository.findById(id)
       .orElseThrow(() -> new NotFoundException("erro.tarefa.nao.encontrada"));
     return mapper.toResponse(t);
   }
 
+  @CacheEvict(value = "tarefas", allEntries = true)
   public TarefaResponse salvar(TarefaRequest request) {
     return mapper.toResponse(repository.save(mapper.toEntity(request)));
   }
 
+  @CacheEvict(value = "tarefas", allEntries = true)
   public TarefaResponse atualizar(Long id, TarefaRequest request) {
     if (!repository.existsById(id)) {
       throw new NotFoundException("erro.tarefa.nao.encontrada");
@@ -42,6 +48,7 @@ public class TarefaService {
     return mapper.toResponse(repository.save(entity));
   }
 
+  @CacheEvict(value = "tarefas", allEntries = true)
   public void remover(Long id) {
     if (!repository.existsById(id)) {
       throw new NotFoundException("erro.tarefa.nao.encontrada");
