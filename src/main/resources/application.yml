@@ -4,8 +4,8 @@ server:
   servlet:
     context-path: /api
 
-# Internacionalização
 spring:
+  # Internacionalização
   messages:
     basename: messages
     encoding: UTF-8
@@ -22,7 +22,7 @@ spring:
     database-platform: org.hibernate.dialect.OracleDialect
     open-in-view: false
 
-  # Datasource (Oracle acadêmico)
+  # Datasource
   datasource:
     url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
     username: rm556331
@@ -47,7 +47,7 @@ spring:
     ssl:
       enabled: true
 
-  # Segurança (usuário padrão do Spring Security)
+  # Segurança
   security:
     user:
       name: admin
@@ -56,6 +56,29 @@ spring:
   # Cache
   cache:
     type: simple
+
+  # Paginação padrão
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 50
+
+  # Testes e Dev
+  devtools:
+    restart:
+      enabled: true
+  main:
+    allow-bean-definition-overriding: true
+
+  # Logging / Encoding
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  charset:
+    console: UTF-8
 
 # JWT
 jwt:
@@ -67,28 +90,3 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
-
-# Paginação padrão
-spring:
-  data:
-    web:
-      pageable:
-        default-page-size: 10
-        max-page-size: 50
-
-# Testes e Dev
-spring:
-  devtools:
-    restart:
-      enabled: true
-  main:
-    allow-bean-definition-overriding: true
-
-# Logging / Encoding
-spring:
-  output:
-    ansi:
-      enabled: always
-logging:
-  charset:
-    console: UTF-8
