@@ -1,6 +1,11 @@
+FROM eclipse-temurin:17-jdk AS build
+WORKDIR /app
+COPY . .
+RUN ./mvnw clean package
+
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-COPY target/skill4green-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/skill4green-0.0.1-SNAPSHOT.jar app.jar
 ENV JAVA_OPTS=""
 EXPOSE 8080
 ENTRYPOINT ["sh","-c","java $JAVA_OPTS -jar /app/app.jar"]
