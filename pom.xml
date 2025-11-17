@@ -74,10 +74,10 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Oracle JDBC -->
+    <!-- H2 Database (para Render) -->
     <dependency>
-      <groupId>com.oracle.database.jdbc</groupId>
-      <artifactId>ojdbc11</artifactId>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
       <scope>runtime</scope>
     </dependency>
 
