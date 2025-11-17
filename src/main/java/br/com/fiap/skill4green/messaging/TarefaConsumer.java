@@ -12,6 +12,6 @@ public class TarefaConsumer {
 
   @RabbitListener(queues = RabbitMQConfig.QUEUE)
   public void receberExecucao(ExecucaoResponse execucao) {
-    log.info("✅ Execução recebida da fila: {}", execucao);
+    log.info("Execução recebida da fila: {}", execucao);
   }
 }
