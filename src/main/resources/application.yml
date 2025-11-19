@@ -1,0 +1,100 @@
+# Server
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  # Internacionalização
+  messages:
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+
+  # JPA / Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+
+  # Datasource (H2 em memória para Render)
+  datasource:
+    url: jdbc:h2:mem:skill4green;MODE=Oracle;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # Pool de conexões Hikari
+  datasource.hikari:
+    maximum-pool-size: 3
+    minimum-idle: 1
+    idle-timeout: 10000
+    connection-timeout: 20000
+    max-lifetime: 30000
+
+  # IA - Spring AI
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: https://api.openai.com/v1
+      chat:
+        model: gpt-3.5-turbo
+
+  # RabbitMQ (CloudAMQP)
+  rabbitmq:
+    host: fly.rmq.cloudamqp.com
+    port: 5671
+    username: kqszsjwo
+    password: 17lV0zkgsziQxqdK4ELaoJjemIf05M56
+    virtual-host: kqszsjwo
+    ssl:
+      enabled: true
+
+  # Segurança
+  security:
+    user:
+      name: admin
+      password: admin123
+
+  # Cache
+  cache:
+    type: simple
+
+  # Paginação padrão
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 50
+
+  # Testes e Dev
+  devtools:
+    restart:
+      enabled: true
+  main:
+    allow-bean-definition-overriding: true
+
+  # Logging / Encoding
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  charset:
+    console: UTF-8
+
+# JWT
+jwt:
+  secret: c2tpbGw0Z3JlZW4tc2VjcmV0LWtleS1wYXJhLWp3dC0yNTZiaXRz
+
+# Swagger
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
