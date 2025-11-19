@@ -40,7 +40,7 @@ spring:
   # IA - Spring AI
   ai:
     openai:
-      api-key: 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
+      api-key: ${OPENAI_API_KEY}
       base-url: https://api.openai.com/v1
       chat:
         model: gpt-3.5-turbo
