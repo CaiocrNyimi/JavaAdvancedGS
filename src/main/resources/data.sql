@@ -16,56 +16,90 @@ VALUES ('Carlos Lima', 'Operações', 'carlos@empresa.com',
         '$2a$10$pkgQnkNK/JbALXBn1p7QFu/23BgjK7wXr9z86pfr2N8pyHLwwWW.i',
         'USER', 'INICIANTE', 200);
 
--- ============================
--- CURSOS
--- ============================
-INSERT INTO cursos (tema, nivel, link)
-VALUES ('Eficiência Energética', 'INICIANTE', 'https://curso.com/energia');
+-- RH
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Mariana Alves', 'RH', 'mariana@empresa.com',
+        '$2a$10$RHqXlt31BPEHRlsOAKzc4eNyqQc31BZC5YzPoJl3fUXCE17sm/InK',
+        'USER', 'INICIANTE', 300);
 
-INSERT INTO cursos (tema, nivel, link)
-VALUES ('Sustentabilidade Corporativa', 'EXPLORADOR', 'https://curso.com/sustentabilidade');
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('João Pedro', 'RH', 'joao@empresa.com',
+        '$2a$10$B3Fb/SoClN5PkDP9LQciquKFp/93bBPKtLMeUyw.47WFqe8vnS4jG',
+        'USER', 'EXPLORADOR', 450);
 
-INSERT INTO cursos (tema, nivel, link)
-VALUES ('Automação Sustentável', 'GUARDIAO', 'https://curso.com/automacao');
+-- Marketing
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Fernanda Costa', 'Marketing', 'fernanda@empresa.com',
+        '$2a$10$pkgQnkNK/JbALXBn1p7QFu/23BgjK7wXr9z86pfr2N8pyHLwwWW.i',
+        'USER', 'INICIANTE', 250);
 
--- ============================
--- TAREFAS
--- ============================
-INSERT INTO tarefas (descricao, dificuldade, impacto_kwh, impacto_co2)
-VALUES ('Trocar lâmpadas fluorescentes por LED', 'BAIXA', 10.0, 2.5);
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Lucas Martins', 'Marketing', 'lucas@empresa.com',
+        '$2a$10$RHqXlt31BPEHRlsOAKzc4eNyqQc31BZC5YzPoJl3fUXCE17sm/InK',
+        'USER', 'GUARDIAO', 800);
 
-INSERT INTO tarefas (descricao, dificuldade, impacto_kwh, impacto_co2)
-VALUES ('Desligar ar-condicionado fora do horário comercial', 'MEDIA', 25.0, 8.0);
+-- Logística
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Patrícia Gomes', 'Logística', 'patricia@empresa.com',
+        '$2a$10$B3Fb/SoClN5PkDP9LQciquKFp/93bBPKtLMeUyw.47WFqe8vnS4jG',
+        'USER', 'EXPLORADOR', 600);
 
-INSERT INTO tarefas (descricao, dificuldade, impacto_kwh, impacto_co2)
-VALUES ('Configurar impressoras para modo repouso automático', 'BAIXA', 5.0, 1.2);
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Ricardo Silva', 'Logística', 'ricardo@empresa.com',
+        '$2a$10$pkgQnkNK/JbALXBn1p7QFu/23BgjK7wXr9z86pfr2N8pyHLwwWW.i',
+        'USER', 'INICIANTE', 200);
 
-INSERT INTO tarefas (descricao, dificuldade, impacto_kwh, impacto_co2)
-VALUES ('Auditar consumo de energia dos servidores', 'ALTA', 50.0, 15.0);
+-- Compras
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Beatriz Rocha', 'Compras', 'beatriz@empresa.com',
+        '$2a$10$RHqXlt31BPEHRlsOAKzc4eNyqQc31BZC5YzPoJl3fUXCE17sm/InK',
+        'USER', 'MENTOR', 1200);
 
--- ============================
--- MISSOES
--- ============================
-INSERT INTO missoes (descricao, meta, status)
-VALUES ('Reduzir 5% do consumo do andar de TI', 5.0, 'PENDENTE');
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Carlos Eduardo', 'Compras', 'carloseduardo@empresa.com',
+        '$2a$10$B3Fb/SoClN5PkDP9LQciquKFp/93bBPKtLMeUyw.47WFqe8vnS4jG',
+        'USER', 'EXPLORADOR', 500);
 
-INSERT INTO missoes (descricao, meta, status)
-VALUES ('Trocar todas as lâmpadas do corredor principal', 20.0, 'EM_ANDAMENTO');
+-- Jurídico
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Sofia Mendes', 'Jurídico', 'sofia@empresa.com',
+        '$2a$10$pkgQnkNK/JbALXBn1p7QFu/23BgjK7wXr9z86pfr2N8pyHLwwWW.i',
+        'USER', 'INICIANTE', 350);
 
-INSERT INTO missoes (descricao, meta, status)
-VALUES ('Diminuir em 10% o consumo de energia do setor Financeiro', 10.0, 'CONCLUIDA');
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Thiago Ferreira', 'Jurídico', 'thiago@empresa.com',
+        '$2a$10$RHqXlt31BPEHRlsOAKzc4eNyqQc31BZC5YzPoJl3fUXCE17sm/InK',
+        'USER', 'GUARDIAO', 900);
 
--- ============================
--- EXECUCOES
--- ============================
-INSERT INTO execucoes (data, resultado, colaborador_id, tarefa_id)
-VALUES (CURRENT_TIMESTAMP, 'Tarefa concluída com sucesso', 2, 1);
+-- Engenharia
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Gabriel Santos', 'Engenharia', 'gabriel@empresa.com',
+        '$2a$10$B3Fb/SoClN5PkDP9LQciquKFp/93bBPKtLMeUyw.47WFqe8vnS4jG',
+        'USER', 'EXPLORADOR', 700);
 
-INSERT INTO execucoes (data, resultado, colaborador_id, tarefa_id)
-VALUES (CURRENT_TIMESTAMP, 'Economia registrada', 2, 2);
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Camila Ribeiro', 'Engenharia', 'camila@empresa.com',
+        '$2a$10$pkgQnkNK/JbALXBn1p7QFu/23BgjK7wXr9z86pfr2N8pyHLwwWW.i',
+        'USER', 'INICIANTE', 400);
 
-INSERT INTO execucoes (data, resultado, colaborador_id, tarefa_id)
-VALUES (CURRENT_TIMESTAMP, 'Configuração aplicada', 3, 3);
+-- Atendimento
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Felipe Andrade', 'Atendimento', 'felipe@empresa.com',
+        '$2a$10$RHqXlt31BPEHRlsOAKzc4eNyqQc31BZC5YzPoJl3fUXCE17sm/InK',
+        'USER', 'EXPLORADOR', 550);
 
-INSERT INTO execucoes (data, resultado, colaborador_id, tarefa_id)
-VALUES (CURRENT_TIMESTAMP, 'Auditoria realizada', 1, 4);
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Larissa Moura', 'Atendimento', 'larissa@empresa.com',
+        '$2a$10$B3Fb/SoClN5PkDP9LQciquKFp/93bBPKtLMeUyw.47WFqe8vnS4jG',
+        'USER', 'INICIANTE', 280);
+
+-- Pesquisa & Desenvolvimento
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('André Carvalho', 'P&D', 'andre@empresa.com',
+        '$2a$10$pkgQnkNK/JbALXBn1p7QFu/23BgjK7wXr9z86pfr2N8pyHLwwWW.i',
+        'USER', 'GUARDIAO', 950);
+
+INSERT INTO colaboradores (nome, setor, email, senha, perfil, nivel_verde, ecoins)
+VALUES ('Juliana Torres', 'P&D', 'juliana@empresa.com',
+        '$2a$10$RHqXlt31BPEHRlsOAKzc4eNyqQc31BZC5YzPoJl3fUXCE17sm/InK',
+        'USER', 'EXPLORADOR', 600);
